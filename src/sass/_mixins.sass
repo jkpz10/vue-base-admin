@@ -1,0 +1,14 @@
+@mixin font($weight: 300, $size: 14px, $face: 'Open Sans')
+  // 700, 600, 400, 300 Open Sans
+  // 500, 400, 300 Roboto
+  font-family:  $face, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important
+  font-weight: $weight !important
+  font-size: $size !important
+  line-height: $size * 1.4 !important
+  color: $vc_text
+
+@mixin purpleBackground()
+  background: rgb(103,58,183) linear-gradient(90deg, rgba(103,58,183,1) 0%, rgba(103,58,183,1) 25%, rgba(34,119,186,1) 100%) !important
+
+.cursor-pointer
+  cursor: pointer

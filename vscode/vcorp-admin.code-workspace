@@ -1,0 +1,72 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "../"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.*": true,
+      "**/node_modules": true,
+      "**/public": true,
+      "**/tests": true,
+      "**/vscode": true,
+      "vue.config.js": true,
+      "postcss.config.js": true,
+      "package-lock.json": true,
+      "now.json": true,
+      "jest.config.js": true,
+      "cypress.json": true,
+      "bitbucket-pipelines.yml": true,
+      "babel.config.js": true
+    },
+    "files.watcherExclude": {
+      "**/.*": true,
+      "**/node_modules": true,
+      "**/public": true,
+      "**/tests": true,
+      "**/vscode": true,
+      "vue.config.js": true,
+      "postcss.config.js": true,
+      "package-lock.json": true,
+      "now.json": true,
+      "jest.config.js": true,
+      "cypress.json": true,
+      "bitbucket-pipelines.yml": true,
+      "babel.config.js": true
+    },
+    "search.exclude": {
+      "**/.*": true,
+      "**/node_modules": true,
+      "**/public": true,
+      "**/tests": true,
+      "**/vscode": true,
+      "vue.config.js": true,
+      "postcss.config.js": true,
+      "package-lock.json": true,
+      "now.json": true,
+      "jest.config.js": true,
+      "cypress.json": true,
+      "bitbucket-pipelines.yml": true,
+      "babel.config.js": true
+    },
+    "search.quickOpen.includeHistory": false,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.renderWhitespace": "all",
+    "eslint.alwaysShowStatus": true,
+    "eslint.lintTask.enable": true,
+    "editor.tabSize": 2,
+    "files.eol": "\n",
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+  }
+}

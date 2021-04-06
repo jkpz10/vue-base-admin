@@ -1,0 +1,71 @@
+
+definitions:
+  steps:
+    - step: &build-stage
+        name: Build the app
+        image: node:12.16.2
+        caches:
+          - node
+        script:
+          - mv .env.stage .env
+          - npm install
+          - npm run build
+        artifacts:
+          - dist/**
+    - step: &deploy-stage
+        name: Sync files to s3 & invalidate
+        deployment: staging
+        script:
+          - pipe: atlassian/aws-s3-deploy:0.4.4
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: 'us-east-2'
+              S3_BUCKET: 'staging.admin.vitacorpo.com'
+              LOCAL_PATH: 'dist'
+          - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: 'us-east-2'
+              DISTRIBUTION_ID: $STAGE_DISTRIBUTION_ID
+    - step: &build-prod
+        name: Build the app
+        image: node:12.16.2
+        caches:
+          - node
+        script:
+          - mv .env.prod .env
+          - npm install
+          - npm run build
+        artifacts:
+          - dist/**
+    - step: &deploy-prod
+        name: Sync files to s3 & invalidate
+        deployment: production
+        script:
+          - pipe: atlassian/aws-s3-deploy:0.4.4
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: 'us-east-2'
+              S3_BUCKET: 'admin.vitacorpo.com'
+              LOCAL_PATH: 'dist'
+          - pipe: atlassian/aws-cloudfront-invalidate:0.3.3
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+              AWS_DEFAULT_REGION: 'us-east-2'
+              DISTRIBUTION_ID: $PROD_DISTRIBUTION_ID
+
+options:
+  max-time: 60
+
+pipelines:
+  branches:
+    develop:
+      - step: *build-stage
+      - step: *deploy-stage
+    master:
+      - step: *build-prod
+      - step: *deploy-prod
