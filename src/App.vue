@@ -1,48 +1,28 @@
 <template>
-  <span>
-    <span v-if="!hideLoader">
-      <v-sheet v-if="!isLoaded" class="pos-absolute full-width full-height flex-fill">
-        <div class="pos-relative">
-          <v-progress-circular color="blue" width="2" size="24" indeterminate />
-        </div>
-        <div class="headline">Loading...please wait...</div>
-      </v-sheet>
-    </span>
-    <router-view />
-  </span>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  computed: {
-    hideLoader () {
-      const { auth } = this.$route.meta
-      return auth === false
-    },
-    ...mapState({
-      isLoaded (state) {
-        const { isRestored, isReady } = state.app
-        return isRestored === true && isReady === true
-      },
-    }),
-  },
+  components: {
+    HelloWorld
+  }
 }
 </script>
 
-<style lang="sass" scoped>
-@import '@/sass/_mixins'
-.v-sheet
-  display: flex
-  flex-direction: row
-  flex-wrap: nowrap
-  justify-content: center
-  align-items: center
-  align-content: center
-.v-progress-circular
-  margin-right: 10px
-.headline
-  @include font(300, 20px)
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
