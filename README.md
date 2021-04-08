@@ -1,4 +1,6 @@
-# Vitacorpo Web Admin
+# Basic Web Admin Starter Template
+
+### Vue , Vue-Router , Vuex , Vuetify
 
 ## Setting up Workspace
 
