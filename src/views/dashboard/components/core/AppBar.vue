@@ -1,27 +1,53 @@
 <template>
   <v-app-bar app>
-      <v-app-bar-nav-icon @click="setDrawer(!drawer)"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon class="xl:tw-hidden" @click="doToggleDrawer()"></v-app-bar-nav-icon>
+    <div class="tw-flex tw-w-full tw-justify-between">
+      <v-toolbar-title>
+        <AtomText :text="$route.name" />
+      </v-toolbar-title>
 
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
+      <v-badge
+        bordered
+        color="error"
+        dot
+        overlap
+      >
+        <v-icon>fa-bell</v-icon>
+      </v-badge>
+      
+    </div>
+  </v-app-bar>
 </template>
 
 <script>
 
 // Utilities
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
+import { TOGGLE_DRAWER } from '@/store/modules/app'
+
+
+// Components 
+import AtomText from '@/components/atoms/Text'
 
 export default {
   name: 'DashboardCoreAppBar',
+  components : {
+    AtomText,
+  },
 
   computed: {
-    ...mapState(['drawer']),
+    ...mapState({
+      // state here
+    }),
   },
 
   methods: {
-    ...mapMutations({
-      setDrawer: 'SET_DRAWER',
-    }),
+    // ...mapMutations({
+    //   setDrawer: 'SET_DRAWER',
+    // }),
+    doToggleDrawer () {
+      this.$store.commit(TOGGLE_DRAWER)
+    },
   },
 }
 </script>
