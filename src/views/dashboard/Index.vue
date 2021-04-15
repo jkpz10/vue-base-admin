@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <dashboard-core-app-bar :drawer="drawer" />
+    <dashboard-core-app-bar />
 
-    <dashboard-core-drawer :drawer="drawer" />
+    <dashboard-core-drawer />
 
     <dashboard-core-view />
   </v-app>
